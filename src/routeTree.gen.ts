@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AgendaRouteImport } from './routes/agenda'
+import { Route as CampanhasRouteImport } from './routes/campanhas'
+import { Route as ClientesRouteImport } from './routes/clientes'
+import { Route as PortalRouteImport } from './routes/portal'
+import { Route as RecompensasRouteImport } from './routes/recompensas'
+import { Route as RetencaoRouteImport } from './routes/retencao'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AgendaRoute = AgendaRouteImport.update({
+  id: '/agenda',
+  path: '/agenda',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CampanhasRoute = CampanhasRouteImport.update({
+  id: '/campanhas',
+  path: '/campanhas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClientesRoute = ClientesRouteImport.update({
+  id: '/clientes',
+  path: '/clientes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortalRoute = PortalRouteImport.update({
+  id: '/portal',
+  path: '/portal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecompensasRoute = RecompensasRouteImport.update({
+  id: '/recompensas',
+  path: '/recompensas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RetencaoRoute = RetencaoRouteImport.update({
+  id: '/retencao',
+  path: '/retencao',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/agenda': typeof AgendaRoute
+  '/campanhas': typeof CampanhasRoute
+  '/clientes': typeof ClientesRoute
+  '/portal': typeof PortalRoute
+  '/recompensas': typeof RecompensasRoute
+  '/retencao': typeof RetencaoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/agenda': typeof AgendaRoute
+  '/campanhas': typeof CampanhasRoute
+  '/clientes': typeof ClientesRoute
+  '/portal': typeof PortalRoute
+  '/recompensas': typeof RecompensasRoute
+  '/retencao': typeof RetencaoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/agenda': typeof AgendaRoute
+  '/campanhas': typeof CampanhasRoute
+  '/clientes': typeof ClientesRoute
+  '/portal': typeof PortalRoute
+  '/recompensas': typeof RecompensasRoute
+  '/retencao': typeof RetencaoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/agenda'
+    | '/campanhas'
+    | '/clientes'
+    | '/portal'
+    | '/recompensas'
+    | '/retencao'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/agenda'
+    | '/campanhas'
+    | '/clientes'
+    | '/portal'
+    | '/recompensas'
+    | '/retencao'
+  id:
+    | '__root__'
+    | '/'
+    | '/agenda'
+    | '/campanhas'
+    | '/clientes'
+    | '/portal'
+    | '/recompensas'
+    | '/retencao'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AgendaRoute: typeof AgendaRoute
+  CampanhasRoute: typeof CampanhasRoute
+  ClientesRoute: typeof ClientesRoute
+  PortalRoute: typeof PortalRoute
+  RecompensasRoute: typeof RecompensasRoute
+  RetencaoRoute: typeof RetencaoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/agenda': {
+      id: '/agenda'
+      path: '/agenda'
+      fullPath: '/agenda'
+      preLoaderRoute: typeof AgendaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/campanhas': {
+      id: '/campanhas'
+      path: '/campanhas'
+      fullPath: '/campanhas'
+      preLoaderRoute: typeof CampanhasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/clientes': {
+      id: '/clientes'
+      path: '/clientes'
+      fullPath: '/clientes'
+      preLoaderRoute: typeof ClientesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portal': {
+      id: '/portal'
+      path: '/portal'
+      fullPath: '/portal'
+      preLoaderRoute: typeof PortalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recompensas': {
+      id: '/recompensas'
+      path: '/recompensas'
+      fullPath: '/recompensas'
+      preLoaderRoute: typeof RecompensasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/retencao': {
+      id: '/retencao'
+      path: '/retencao'
+      fullPath: '/retencao'
+      preLoaderRoute: typeof RetencaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AgendaRoute: AgendaRoute,
+  CampanhasRoute: CampanhasRoute,
+  ClientesRoute: ClientesRoute,
+  PortalRoute: PortalRoute,
+  RecompensasRoute: RecompensasRoute,
+  RetencaoRoute: RetencaoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
