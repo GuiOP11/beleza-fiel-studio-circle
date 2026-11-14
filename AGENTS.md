@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Application structure
+- Keep shared demonstration state in the BeautyProvider and tenant-filter every relational dataset before display; simulated isolation is not production access control.
+- Content pages use separate TanStack leaf routes and a shared workspace renderer so navigation and page metadata remain distinct.
+- Home-screen support is manifest-only; no offline cache or app-shell service worker is registered in previews.
+- WhatsApp actions are individual click-to-chat links with explicit phone input; never pretend a prepared campaign was automatically delivered.
