@@ -8,6 +8,13 @@
       "when": 1794621144979,
       "tag": "0000_loyalty_accounts_coupons_booking",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794621670578,
+      "tag": "0001_restrict_loyalty_function_anonymous_access",
+      "breakpoints": true
     }
   ]
 }

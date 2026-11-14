@@ -1,0 +1,2 @@
+REVOKE EXECUTE ON FUNCTION public.owns_company(uuid),public.belongs_company(uuid),public.setup_beauty_company(text,text),public.create_beauty_client(uuid,text,text,integer),public.join_beauty_client(uuid),public.set_beauty_points(uuid,integer),public.create_beauty_reward(uuid,text,text,integer,text),public.create_beauty_slot(uuid,timestamptz),public.redeem_beauty_reward(uuid,uuid),public.use_beauty_coupon(uuid),public.create_beauty_profile() FROM anon;
+REVOKE EXECUTE ON FUNCTION public.create_beauty_profile() FROM authenticated;
