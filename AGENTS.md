@@ -38,3 +38,5 @@ use the editor.
 - Points debit, coupon creation and slot reservation occur in one locking database function to prevent double spending and double booking.
 - Invite tokens link a signed-in client to an unclaimed client row; never select invite tokens in client workspace responses.
 - Owner-created studios grant ownership only over the newly created studio; client invitation accounts cannot create or elevate roles for an existing studio.
+- Owner client lists use account-scoped, database-filtered pages with stable name/id ordering and SQL dashboard aggregates to avoid full-table downloads.
+- Promotion messages use an individual click-to-chat dialog with a confirmed phone number and the registered name; never report automatic delivery.

@@ -1,7 +1,7 @@
 import { createServerFn } from '@tanstack/react-start';
 import { requireSupabaseAuth } from '@/integrations/supabase/auth-middleware';
 import { z } from 'zod';
-export const CLIENTS_PAGE_SIZE = 50;
+import { CLIENTS_PAGE_SIZE, cleanClientSearch, clientPageRange } from '@/lib/client-list';
 const RECENT_LIMIT = 100;
 
 export const getLoyaltyWorkspace=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).handler(async({context})=>{
@@ -54,16 +54,15 @@ export const joinClient=createServerFn({method:'POST'}).middleware([requireSupab
 export const redeemAndBook=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator(z.object({rewardId:z.string().uuid(),slotId:z.string().uuid()})).handler(async({data,context})=>{const {data:id,error}=await context.supabase.rpc('redeem_beauty_reward',{reward:data.rewardId,slot:data.slotId});if(error)throw new Error('Resgate não concluído. Confira seus pontos e escolha um horário disponível.');return {id};});
 
 // Busca segura para o filtro do PostgREST: remove caracteres que quebram a sintaxe/curingas.
-const cleanSearch=(v:string)=>v.replace(/[%_,()*\\"'`]/g,' ').replace(/\s+/g,' ').trim().slice(0,60);
 export const listClients=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator(z.object({page:z.number().int().min(0).max(100000),search:z.string().max(80)})).handler(async({data,context})=>{
  const db=context.supabase;
  const {data:role,error:roleError}=await db.from('user_roles').select('company_id,role').eq('user_id',context.userId).limit(1).maybeSingle();
  if(roleError||!role||role.role!=='owner')throw new Error('Acesso não disponível.');
- const from=data.page*CLIENTS_PAGE_SIZE;
+ const {from,to}=clientPageRange(data.page);
  let query=db.from('clients').select('id,name,phone,points,invite_token',{count:'exact'}).eq('company_id',role.company_id);
- const term=cleanSearch(data.search);
+ const term=cleanClientSearch(data.search);
  if(term)query=query.or(`name.ilike.%${term}%,phone.ilike.%${term}%`);
- const {data:rows,count,error}=await query.order('name').order('id').range(from,from+CLIENTS_PAGE_SIZE-1);
+ const {data:rows,count,error}=await query.order('name').order('id').range(from,to);
  if(error)throw new Error('Não foi possível carregar as clientes.');
  return {rows:rows??[],total:count??0,pageSize:CLIENTS_PAGE_SIZE};
 });
