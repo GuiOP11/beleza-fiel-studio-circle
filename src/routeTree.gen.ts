@@ -10,21 +10,35 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AgendaRouteImport } from './routes/agenda'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CampanhasRouteImport } from './routes/campanhas'
 import { Route as ClientesRouteImport } from './routes/clientes'
 import { Route as PortalRouteImport } from './routes/portal'
 import { Route as RecompensasRouteImport } from './routes/recompensas'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as RetencaoRouteImport } from './routes/retencao'
+import { Route as AuthenticatedPainelRouteImport } from './routes/_authenticated/painel'
+import { Route as ConviteTokenRouteImport } from './routes/convite.$token'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AgendaRoute = AgendaRouteImport.update({
   id: '/agenda',
   path: '/agenda',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CampanhasRoute = CampanhasRouteImport.update({
@@ -47,78 +61,123 @@ const RecompensasRoute = RecompensasRouteImport.update({
   path: '/recompensas',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RetencaoRoute = RetencaoRouteImport.update({
   id: '/retencao',
   path: '/retencao',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedPainelRoute = AuthenticatedPainelRouteImport.update({
+  id: '/painel',
+  path: '/painel',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const ConviteTokenRoute = ConviteTokenRouteImport.update({
+  id: '/convite/$token',
+  path: '/convite/$token',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/agenda': typeof AgendaRoute
+  '/auth': typeof AuthRoute
   '/campanhas': typeof CampanhasRoute
   '/clientes': typeof ClientesRoute
   '/portal': typeof PortalRoute
   '/recompensas': typeof RecompensasRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/retencao': typeof RetencaoRoute
+  '/painel': typeof AuthenticatedPainelRoute
+  '/convite/$token': typeof ConviteTokenRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/agenda': typeof AgendaRoute
+  '/auth': typeof AuthRoute
   '/campanhas': typeof CampanhasRoute
   '/clientes': typeof ClientesRoute
   '/portal': typeof PortalRoute
   '/recompensas': typeof RecompensasRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/retencao': typeof RetencaoRoute
+  '/painel': typeof AuthenticatedPainelRoute
+  '/convite/$token': typeof ConviteTokenRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/agenda': typeof AgendaRoute
+  '/auth': typeof AuthRoute
   '/campanhas': typeof CampanhasRoute
   '/clientes': typeof ClientesRoute
   '/portal': typeof PortalRoute
   '/recompensas': typeof RecompensasRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/retencao': typeof RetencaoRoute
+  '/_authenticated/painel': typeof AuthenticatedPainelRoute
+  '/convite/$token': typeof ConviteTokenRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/agenda'
+    | '/auth'
     | '/campanhas'
     | '/clientes'
     | '/portal'
     | '/recompensas'
+    | '/reset-password'
     | '/retencao'
+    | '/painel'
+    | '/convite/$token'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/agenda'
+    | '/auth'
     | '/campanhas'
     | '/clientes'
     | '/portal'
     | '/recompensas'
+    | '/reset-password'
     | '/retencao'
+    | '/painel'
+    | '/convite/$token'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/agenda'
+    | '/auth'
     | '/campanhas'
     | '/clientes'
     | '/portal'
     | '/recompensas'
+    | '/reset-password'
     | '/retencao'
+    | '/_authenticated/painel'
+    | '/convite/$token'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AgendaRoute: typeof AgendaRoute
+  AuthRoute: typeof AuthRoute
   CampanhasRoute: typeof CampanhasRoute
   ClientesRoute: typeof ClientesRoute
   PortalRoute: typeof PortalRoute
   RecompensasRoute: typeof RecompensasRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   RetencaoRoute: typeof RetencaoRoute
+  ConviteTokenRoute: typeof ConviteTokenRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -130,11 +189,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/agenda': {
       id: '/agenda'
       path: '/agenda'
       fullPath: '/agenda'
       preLoaderRoute: typeof AgendaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/campanhas': {
@@ -165,6 +238,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RecompensasRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/retencao': {
       id: '/retencao'
       path: '/retencao'
@@ -172,17 +252,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RetencaoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/painel': {
+      id: '/_authenticated/painel'
+      path: '/painel'
+      fullPath: '/painel'
+      preLoaderRoute: typeof AuthenticatedPainelRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/convite/$token': {
+      id: '/convite/$token'
+      path: '/convite/$token'
+      fullPath: '/convite/$token'
+      preLoaderRoute: typeof ConviteTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedPainelRoute: typeof AuthenticatedPainelRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedPainelRoute: AuthenticatedPainelRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AgendaRoute: AgendaRoute,
+  AuthRoute: AuthRoute,
   CampanhasRoute: CampanhasRoute,
   ClientesRoute: ClientesRoute,
   PortalRoute: PortalRoute,
   RecompensasRoute: RecompensasRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   RetencaoRoute: RetencaoRoute,
+  ConviteTokenRoute: ConviteTokenRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

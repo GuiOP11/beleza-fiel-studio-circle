@@ -1,0 +1,3 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { OwnerPanel } from '@/components/beleza/simple-loyalty';
+export const Route=createFileRoute('/_authenticated/painel')({head:()=>({meta:[{title:'Painel do salão — BelezaFiel'},{name:'description',content:'Gerencie as clientes, os benefícios resgatados e as próximas visitas.'},{property:'og:title',content:'Painel do salão — BelezaFiel'},{property:'og:description',content:'Gerencie as clientes, os benefícios resgatados e as próximas visitas.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:OwnerPanel});

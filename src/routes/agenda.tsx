@@ -1,5 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { Workspace } from '@/components/beleza/workspace';
+import { createFileRoute, redirect } from '@tanstack/react-router';
+
 export const Route = createFileRoute('/agenda')({
  head: () => ({meta:[
  {title:'Minha agenda — BelezaFiel'},
@@ -9,6 +9,5 @@ export const Route = createFileRoute('/agenda')({
  {property:'og:type',content:'website'},
  {name:'twitter:card',content:'summary_large_image'}
  ]}),
- component: Page,
+ beforeLoad: () => { throw redirect({to:'/painel'}); },
 });
-function Page() { return <Workspace view="agenda"/>; }
