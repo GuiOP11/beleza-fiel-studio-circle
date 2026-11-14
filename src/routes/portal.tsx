@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { Workspace } from '@/components/beleza/workspace';
+import { ClientExperience } from '@/components/beleza/simple-loyalty';
 export const Route = createFileRoute('/portal')({
  head: () => ({meta:[
  {title:'Portal da cliente — BelezaFiel'},
@@ -11,4 +11,4 @@ export const Route = createFileRoute('/portal')({
  ]}),
  component: Page,
 });
-function Page() { return <Workspace view="portal"/>; }
+function Page() { return <ClientExperience />; }
