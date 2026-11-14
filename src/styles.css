@@ -275,3 +275,13 @@ td { padding:17px 20px;font-size:12px;border-top:1px solid var(--border); }
 @media (max-width:800px) { .sidebar { width:72px;padding:25px 10px; } .sidebar .brand { justify-content:center; } .sidebar .brand-word,.studio-switch,.nav-label,.sidebar-bottom,.side-nav span { display:none; } .side-nav { margin-top:36px; } .side-nav a { justify-content:center;padding:0; } .app-main { margin-left:72px;width:calc(100% - 72px); } .main-grid,.bottom-grid { grid-template-columns:1fr; } .stats-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .portal-grid { grid-template-columns:1fr; } .reward-grid { grid-template-columns:1fr 1fr; } }
 @media (max-width:540px) { .sidebar { width:56px;padding:22px 6px; } .app-main { margin-left:56px;width:calc(100% - 56px); } .content { padding:22px 15px; } .topbar { height:66px;padding:0 14px; } .topbar-label,.topbar-avatar,.desktop-date { display:none; } .workspace-toggle button { font-size:10px;padding:0 8px; } .page-heading h1 { font-size:23px; } .page-heading { align-items:flex-start; } .beauty-banner { height:220px; } .beauty-banner img { object-position:65% center;opacity:.58; } .banner-content { max-width:86%;padding:20px; } .banner-content h2 { font-size:24px; } .stats-grid { gap:10px; } .stat-card { padding:13px; } .stat-value { font-size:25px; } .stat-trend { font-size:8px;flex-wrap:wrap; } .stat-top { gap:5px; } .icon-tile { width:27px;height:27px;flex-shrink:0; } .panel-heading { padding:18px 15px; } .client-row { gap:8px; } .client-row .row-meta { max-width:85px; } .client-detail { font-size:8px; } .reward-grid { grid-template-columns:1fr; } .page-footer { flex-direction:column;gap:7px; } .client-name { font-size:10px; } }
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important;transition:none!important; } }
+.sidebar .plan-box a { color:var(--foreground); }
+.app-main { min-width:0; }
+@media (max-width:540px) {
+ .topbar>div:last-child { width:100%;gap:4px;justify-content:space-between;min-width:0; }
+ .workspace-toggle { min-width:0; }
+ .workspace-toggle a { font-size:10px;padding:0 8px;gap:5px; }
+ .topbar { padding:0 10px; }
+ .panel-title { font-size:13px; }
+ .panel-heading { flex-wrap:wrap; }
+}
