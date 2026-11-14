@@ -30,3 +30,7 @@ Pending loyalty-engine tasks await resumption of the earlier schema change, whic
 - [x] Fix observed performance or pagination problems and run regression checks on desktop and mobile.
 - [x] Preserve benefit creation and add individual WhatsApp promotion messages using the registered client's name and an explicitly confirmed phone number.
 - [x] Add a return/maintenance message template and explain individual WhatsApp sending without claiming automatic overdue detection.
+
+## Account profiles
+- [x] Add private account photos and a shared profile showing the signed-in email and logout for owners and clients.
+- [x] Verify photo persistence, self-only profile/storage policies and logout on desktop and mobile.

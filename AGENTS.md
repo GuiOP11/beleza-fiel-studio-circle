@@ -40,3 +40,4 @@ use the editor.
 - Owner-created studios grant ownership only over the newly created studio; client invitation accounts cannot create or elevate roles for an existing studio.
 - Owner client lists use account-scoped, database-filtered pages with stable name/id ordering and SQL dashboard aggregates to avoid full-table downloads.
 - Promotion messages use an individual click-to-chat dialog with a confirmed phone number and the registered name; never report automatic delivery.
+- Shared account profiles use the authenticated email and self-only profile rows; private photos live in user-ID folders with self-only storage policies and signed URLs, never grant roles through profile edits.
