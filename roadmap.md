@@ -15,10 +15,12 @@
 - [x] Remove Lovable sign-in and visible platform branding from app-owned login screens.
 
 ## Configurable loyalty engine
-- [ ] Apply the uploaded scaling SQL exactly as supplied and verify execution.
+- [x] Apply the uploaded scaling SQL exactly as supplied and verify execution.
 - [ ] Store editable services, reward tiers and company expiration/bonus settings.
 - [ ] Award points only on completed appointments, with immutable reversal and expiration ledger entries.
 - [ ] Implement atomic stock-aware redemption, six-character pickup codes and automatic expiry refunds.
 - [ ] Add owner pending pickups, service/appointment controls and editable rules.
 - [ ] Add client database-driven milestones, expiring points and pickup QR codes.
 - [ ] Test concrete rules, scheduling, isolation and client-to-owner redemption flow.
+
+Pending loyalty-engine tasks await resumption of the earlier schema change, which was cancelled before execution when the exact-SQL upload arrived.
