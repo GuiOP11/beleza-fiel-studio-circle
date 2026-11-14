@@ -1,0 +1,4 @@
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS avatar_path text;
+CREATE POLICY profile_photos_read_self ON storage.objects FOR SELECT TO authenticated USING (bucket_id = 'profile-photos' AND (storage.foldername(name))[1] = (SELECT auth.uid())::text);
+CREATE POLICY profile_photos_insert_self ON storage.objects FOR INSERT TO authenticated WITH CHECK (bucket_id = 'profile-photos' AND (storage.foldername(name))[1] = (SELECT auth.uid())::text AND lower(storage.extension(name)) IN ('jpg', 'jpeg', 'png', 'webp'));
+CREATE POLICY profile_photos_delete_self ON storage.objects FOR DELETE TO authenticated USING (bucket_id = 'profile-photos' AND (storage.foldername(name))[1] = (SELECT auth.uid())::text);
