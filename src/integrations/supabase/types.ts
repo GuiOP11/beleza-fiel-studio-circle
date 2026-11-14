@@ -14,13 +14,294 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      booking_slots: {
+        Row: {
+          booked: boolean
+          company_id: string
+          id: string
+          starts_at: string
+        }
+        Insert: {
+          booked?: boolean
+          company_id: string
+          id?: string
+          starts_at: string
+        }
+        Update: {
+          booked?: boolean
+          company_id?: string
+          id?: string
+          starts_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "booking_slots_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      clients: {
+        Row: {
+          company_id: string
+          created_at: string
+          id: string
+          invite_token: string
+          name: string
+          phone: string
+          points: number
+          user_id: string | null
+        }
+        Insert: {
+          company_id: string
+          created_at?: string
+          id?: string
+          invite_token?: string
+          name: string
+          phone?: string
+          points?: number
+          user_id?: string | null
+        }
+        Update: {
+          company_id?: string
+          created_at?: string
+          id?: string
+          invite_token?: string
+          name?: string
+          phone?: string
+          points?: number
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "clients_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      companies: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      loyalty_rewards: {
+        Row: {
+          active: boolean
+          company_id: string
+          description: string
+          id: string
+          kind: string
+          name: string
+          points: number
+        }
+        Insert: {
+          active?: boolean
+          company_id: string
+          description?: string
+          id?: string
+          kind?: string
+          name: string
+          points: number
+        }
+        Update: {
+          active?: boolean
+          company_id?: string
+          description?: string
+          id?: string
+          kind?: string
+          name?: string
+          points?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "loyalty_rewards_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          id: string
+          name?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      reward_redemptions: {
+        Row: {
+          client_id: string
+          company_id: string
+          coupon_code: string
+          created_at: string
+          id: string
+          points_spent: number
+          reward_id: string
+          reward_name: string
+          slot_id: string
+          status: string
+          used_at: string | null
+        }
+        Insert: {
+          client_id: string
+          company_id: string
+          coupon_code?: string
+          created_at?: string
+          id?: string
+          points_spent: number
+          reward_id: string
+          reward_name: string
+          slot_id: string
+          status?: string
+          used_at?: string | null
+        }
+        Update: {
+          client_id?: string
+          company_id?: string
+          coupon_code?: string
+          created_at?: string
+          id?: string
+          points_spent?: number
+          reward_id?: string
+          reward_name?: string
+          slot_id?: string
+          status?: string
+          used_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reward_redemptions_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "reward_redemptions_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "reward_redemptions_reward_id_fkey"
+            columns: ["reward_id"]
+            isOneToOne: false
+            referencedRelation: "loyalty_rewards"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "reward_redemptions_slot_id_fkey"
+            columns: ["slot_id"]
+            isOneToOne: true
+            referencedRelation: "booking_slots"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          company_id: string
+          id: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          company_id: string
+          id?: string
+          role: string
+          user_id: string
+        }
+        Update: {
+          company_id?: string
+          id?: string
+          role?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_roles_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      belongs_company: { Args: { cid: string }; Returns: boolean }
+      create_beauty_client: {
+        Args: {
+          cid: string
+          client_name: string
+          client_phone: string
+          initial_points: number
+        }
+        Returns: string
+      }
+      create_beauty_reward: {
+        Args: {
+          cid: string
+          cost: number
+          reward_description: string
+          reward_kind: string
+          reward_name: string
+        }
+        Returns: undefined
+      }
+      create_beauty_slot: {
+        Args: { cid: string; slot_time: string }
+        Returns: undefined
+      }
+      join_beauty_client: { Args: { token: string }; Returns: string }
+      owns_company: { Args: { cid: string }; Returns: boolean }
+      redeem_beauty_reward: {
+        Args: { reward: string; slot: string }
+        Returns: string
+      }
+      set_beauty_points: {
+        Args: { balance: number; client: string }
+        Returns: undefined
+      }
+      setup_beauty_company: {
+        Args: { owner_name: string; studio_name: string }
+        Returns: string
+      }
+      use_beauty_coupon: { Args: { redemption: string }; Returns: undefined }
     }
     Enums: {
       [_ in never]: never
