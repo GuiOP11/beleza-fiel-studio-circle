@@ -28,3 +28,4 @@ Pending loyalty-engine tasks await resumption of the earlier schema change, whic
 ## Client list performance
 - [ ] Test all 2,000 inserted clients through the authenticated owner list, including name/phone search and pagination.
 - [ ] Fix observed performance or pagination problems and run regression checks on desktop and mobile.
+- [ ] Preserve benefit creation and add individual WhatsApp promotion messages using the registered client's name and an explicitly confirmed phone number.
