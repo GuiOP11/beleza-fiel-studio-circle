@@ -12,3 +12,4 @@
 - [ ] Combine coupon redemption and available-slot booking in one transaction.
 - [ ] Show owner each redemption, scheduled visit and coupon-use status.
 - [ ] Verify client-to-owner readback and access restrictions.
+- [ ] Remove Lovable sign-in and visible platform branding from app-owned login screens.

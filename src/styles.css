@@ -8,7 +8,6 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
-@import "@lovable.dev/cloud-auth-js/styles.css";
 
 @custom-variant dark (&:is(.dark *));
 
