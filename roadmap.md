@@ -13,3 +13,11 @@
 - [x] Show owner each redemption, scheduled visit and coupon-use status.
 - [x] Verify client-to-owner readback and access restrictions.
 - [x] Remove Lovable sign-in and visible platform branding from app-owned login screens.
+
+## Configurable loyalty engine
+- [ ] Store editable services, reward tiers and company expiration/bonus settings.
+- [ ] Award points only on completed appointments, with immutable reversal and expiration ledger entries.
+- [ ] Implement atomic stock-aware redemption, six-character pickup codes and automatic expiry refunds.
+- [ ] Add owner pending pickups, service/appointment controls and editable rules.
+- [ ] Add client database-driven milestones, expiring points and pickup QR codes.
+- [ ] Test concrete rules, scheduling, isolation and client-to-owner redemption flow.
