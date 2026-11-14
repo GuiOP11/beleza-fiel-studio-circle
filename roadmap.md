@@ -15,6 +15,7 @@
 - [x] Remove Lovable sign-in and visible platform branding from app-owned login screens.
 
 ## Configurable loyalty engine
+- [ ] Apply the uploaded scaling SQL exactly as supplied and verify execution.
 - [ ] Store editable services, reward tiers and company expiration/bonus settings.
 - [ ] Award points only on completed appointments, with immutable reversal and expiration ledger entries.
 - [ ] Implement atomic stock-aware redemption, six-character pickup codes and automatic expiry refunds.
