@@ -24,3 +24,7 @@
 - [ ] Test concrete rules, scheduling, isolation and client-to-owner redemption flow.
 
 Pending loyalty-engine tasks await resumption of the earlier schema change, which was cancelled before execution when the exact-SQL upload arrived.
+
+## Client list performance
+- [ ] Test all 2,000 inserted clients through the authenticated owner list, including name/phone search and pagination.
+- [ ] Fix observed performance or pagination problems and run regression checks on desktop and mobile.
