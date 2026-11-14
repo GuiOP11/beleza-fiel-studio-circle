@@ -14,7 +14,7 @@ export function ClientPromotion({ client, studio, onClose }: Props) {
   const message = promotionMessage(client.name, studio, promotion);
   const link = promotionLink(phone, message);
   return <Dialog open onOpenChange={open => { if (!open) onClose(); }}>
-    <DialogContent>
+    <DialogContent className="max-h-[90dvh] overflow-y-auto">
       <DialogTitle>Promoção pelo WhatsApp</DialogTitle>
       <DialogDescription>{client.name} · {studio}</DialogDescription>
       <label className="field-label" htmlFor="promotion-phone">WhatsApp da cliente</label>
