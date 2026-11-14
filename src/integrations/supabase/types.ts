@@ -288,6 +288,14 @@ export type Database = {
         Returns: undefined
       }
       join_beauty_client: { Args: { token: string }; Returns: string }
+      owner_stats: {
+        Args: { cid: string }
+        Returns: {
+          client_count: number
+          pending_count: number
+          total_points: number
+        }[]
+      }
       owns_company: { Args: { cid: string }; Returns: boolean }
       redeem_beauty_reward: {
         Args: { reward: string; slot: string }
